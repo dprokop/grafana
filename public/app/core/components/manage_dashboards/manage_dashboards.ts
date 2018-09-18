@@ -286,7 +286,7 @@ export class ManageDashboardsCtrl {
   }
 
   createDashboardUrl() {
-    let url = 'dashboard/new';
+    let url = '/dashboard/new';
 
     if (this.folderId) {
       url += `?folderId=${this.folderId}`;
@@ -296,7 +296,7 @@ export class ManageDashboardsCtrl {
   }
 
   importDashboardUrl() {
-    let url = 'dashboard/import';
+    let url = '/dashboard/import';
 
     if (this.folderId) {
       url += `?folderId=${this.folderId}`;

@@ -29,7 +29,7 @@ export class SettingsCtrl {
     // temp hack for annotations and variables editors
     // that rely on inherited scope
     $scope.dashboard = this.dashboard;
-
+    this.viewId = this.$location.search().editview;
     this.$scope.$on('$destroy', () => {
       this.dashboard.updateSubmenuVisibility();
       this.$rootScope.$broadcast('refresh');
@@ -43,7 +43,7 @@ export class SettingsCtrl {
     this.canDelete = this.dashboard.meta.canSave;
 
     this.buildSectionList();
-    this.onRouteUpdated();
+    // this.onRouteUpdated(); // no need for that as viewId is initialised above L32
 
     this.$rootScope.onAppEvent('$routeUpdate', this.onRouteUpdated.bind(this), $scope);
     this.$rootScope.appEvent('dash-scroll', { animate: false, pos: 0 });
@@ -135,6 +135,14 @@ export class SettingsCtrl {
       });
       this.viewId = '404';
     }
+
+    this.$scope.viewId = this.viewId;
+
+    setTimeout(() => {
+      // TODO: Don't understand why scope isn't refreshed automatically. Need to apply
+      // to make the view refresh...
+      this.$scope.$apply();
+    }, 0);
   }
 
   openSaveAsModal() {

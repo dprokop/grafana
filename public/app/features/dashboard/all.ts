@@ -40,7 +40,10 @@ import coreModule from 'app/core/core_module';
 import { FolderDashboardsCtrl } from './folder_dashboards_ctrl';
 import { DashboardImportCtrl } from './dashboard_import_ctrl';
 import { CreateFolderCtrl } from './create_folder_ctrl';
+import { LoadDashboardCtrl, NewDashboardCtrl } from '../../routes/dashboard_loaders';
 
 coreModule.controller('FolderDashboardsCtrl', FolderDashboardsCtrl);
 coreModule.controller('DashboardImportCtrl', DashboardImportCtrl);
 coreModule.controller('CreateFolderCtrl', CreateFolderCtrl);
+coreModule.controller('LoadDashboardCtrl', LoadDashboardCtrl);
+coreModule.controller('NewDashboardCtrl', NewDashboardCtrl);

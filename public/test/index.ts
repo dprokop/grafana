@@ -13,13 +13,13 @@ import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 Enzyme.configure({ adapter: new Adapter() });
 
-angular.module('grafana', ['ngRoute']);
-angular.module('grafana.services', ['ngRoute', '$strap.directives']);
+angular.module('grafana', []);
+angular.module('grafana.services', ['$strap.directives']);
 angular.module('grafana.panels', []);
 angular.module('grafana.controllers', []);
 angular.module('grafana.directives', []);
 angular.module('grafana.filters', []);
-angular.module('grafana.routes', ['ngRoute']);
+angular.module('grafana.routes', []);
 
 const context = (require as any).context('../', true, /specs\.(tsx?|js)/);
 for (const key of context.keys()) {

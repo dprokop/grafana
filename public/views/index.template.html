@@ -21,7 +21,6 @@
 </head>
 
 <body class="theme-[[ .Theme ]]">
-
   <style>
     body {
       margin: 0;
@@ -198,7 +197,8 @@
     </div>
   </div>
 
-  <grafana-app class="grafana-app" ng-cloak>
+  <div id="reactRoot"></div>
+  <!-- <grafana-app class="grafana-app" ng-cloak>
     <sidemenu class="sidemenu"></sidemenu>
 
     <div class="page-alert-list">
@@ -257,7 +257,7 @@
         </footer>
       </div>
     </div>
-  </grafana-app>
+  </grafana-app>  -->
 
   <script>
     window.grafanaBootData = {
@@ -275,7 +275,10 @@
     document.head.insertBefore(myCSS, document.head.childNodes[document.head.childNodes.length - 1].nextSibling);
     // switch loader to show all has loaded
     window.onload = function() {
-      document.getElementsByClassName("preloader")[0].className = "preloader preloader--done";
+      const preloader = document.getElementsByClassName("preloader")[0];
+      if(preloader) {
+        preloader.className = "preloader preloader--done";
+      }
     };
   </script>
 

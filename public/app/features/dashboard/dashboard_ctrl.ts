@@ -175,5 +175,4 @@ export class DashboardCtrl implements PanelContainer {
     this.setupDashboard(dashboard);
   }
 }
-
 coreModule.controller('DashboardCtrl', DashboardCtrl);

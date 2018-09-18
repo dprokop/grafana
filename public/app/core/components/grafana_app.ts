@@ -24,8 +24,10 @@ export class GrafanaCtrl {
     backendSrv: BackendSrv,
     datasourceSrv: DatasourceSrv
   ) {
+    console.log('GrafanaCtrl');
     // sets singleston instances for angular services so react components can access them
     configureStore();
+
     setBackendSrv(backendSrv);
 
     $scope.init = () => {

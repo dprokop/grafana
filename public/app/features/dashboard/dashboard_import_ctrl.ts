@@ -27,7 +27,7 @@ export class DashboardImportCtrl {
   isValidFolderSelection: boolean;
 
   /** @ngInject */
-  constructor(private backendSrv, private validationSrv, navModelSrv, private $location, $routeParams) {
+  constructor(private backendSrv, private validationSrv, navModelSrv, private $location, $route) {
     this.navModel = navModelSrv.getNav('create', 'import');
 
     this.step = 1;
@@ -35,12 +35,11 @@ export class DashboardImportCtrl {
     this.uidExists = false;
     this.autoGenerateUid = true;
     this.autoGenerateUidValue = 'auto-generated';
-    this.folderId = $routeParams.folderId ? Number($routeParams.folderId) || 0 : null;
+    this.folderId = $route.current.params.folderId ? Number($route.current.params.folderId) || 0 : null;
     this.initialFolderTitle = 'Select a folder';
-
     // check gnetId in url
-    if ($routeParams.gnetId) {
-      this.gnetUrl = $routeParams.gnetId;
+    if ($route.current.params.gnetId) {
+      this.gnetUrl = $route.current.params.gnetId;
       this.checkGnetDashboard();
     }
   }

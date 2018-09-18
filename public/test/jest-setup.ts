@@ -11,7 +11,7 @@ angular.module('grafana.panels', []);
 angular.module('grafana.controllers', []);
 angular.module('grafana.directives', []);
 angular.module('grafana.filters', []);
-angular.module('grafana.routes', ['ngRoute']);
+angular.module('grafana.routes', []);
 
 jest.mock('app/core/core', () => ({}));
 jest.mock('app/features/plugins/plugin_loader', () => ({}));

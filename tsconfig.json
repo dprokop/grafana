@@ -23,7 +23,7 @@
     "noImplicitThis": true,
     "noImplicitUseStrict": false,
     "noImplicitAny": false,
-    "noUnusedLocals": true,
+    "noUnusedLocals": false,
     "baseUrl": "public",
     "pretty": true,
     "paths": {

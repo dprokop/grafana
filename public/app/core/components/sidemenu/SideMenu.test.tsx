@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { SideMenu } from './SideMenu';
 import appEvents from '../../app_events';
 import { contextSrv } from 'app/core/services/context_srv';
+import { SideMenu } from './SideMenu';
 
 jest.mock('../../app_events', () => ({
   emit: jest.fn(),

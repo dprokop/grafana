@@ -6,10 +6,10 @@ import (
 	"runtime"
 
 	"github.com/codegangsta/cli"
-	"github.com/grafana/grafana/pkg/cmd/grafana-cli/commands"
-	"github.com/grafana/grafana/pkg/cmd/grafana-cli/logger"
-	"github.com/grafana/grafana/pkg/cmd/grafana-cli/services"
-	"github.com/grafana/grafana/pkg/cmd/grafana-cli/utils"
+	"github.com/dprokop/grafana/pkg/cmd/grafana-cli/commands"
+	"github.com/dprokop/grafana/pkg/cmd/grafana-cli/logger"
+	"github.com/dprokop/grafana/pkg/cmd/grafana-cli/services"
+	"github.com/dprokop/grafana/pkg/cmd/grafana-cli/utils"
 )
 
 var version = "master"

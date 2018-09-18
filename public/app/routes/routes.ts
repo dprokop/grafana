@@ -3,68 +3,210 @@ import './ReactContainer';
 
 import ServerStats from 'app/features/admin/ServerStats';
 import AlertRuleList from 'app/features/alerting/AlertRuleList';
+
 import TeamPages from 'app/features/teams/TeamPages';
 import TeamList from 'app/features/teams/TeamList';
 import FolderSettingsPage from 'app/features/folders/FolderSettingsPage';
 import FolderPermissions from 'app/features/folders/FolderPermissions';
+
+import { GrafanaLegacyRouteDescriptor } from '../core/navigation/GrafanaRoute';
+
+export const legacyRoutes: GrafanaLegacyRouteDescriptor[] = [
+  {
+    path: '/',
+    templateUrl: 'public/app/partials/dashboard.html',
+    controller: 'LoadDashboardCtrl',
+    reloadOnSearch: false,
+    pageClass: 'page-dashboard',
+    exact: true,
+  },
+  {
+    path: '/d/:uid/:slug',
+    templateUrl: 'public/app/partials/dashboard.html',
+    controller: 'LoadDashboardCtrl',
+    reloadOnSearch: false,
+    pageClass: 'page-dashboard',
+    exact: true,
+  },
+  {
+    path: '/d/:uid',
+    templateUrl: 'public/app/partials/dashboard.html',
+    controller: 'LoadDashboardCtrl',
+    reloadOnSearch: false,
+    pageClass: 'page-dashboard',
+    exact: true,
+  },
+  {
+    path: '/dashboard/:type/:slug',
+    templateUrl: 'public/app/partials/dashboard.html',
+    controller: 'LoadDashboardCtrl',
+    reloadOnSearch: false,
+    pageClass: 'page-dashboard',
+    exact: true,
+  },
+  {
+    path: '/d-solo/:uid/:slug',
+    templateUrl: 'public/app/features/panel/partials/soloPanel.html',
+    controller: 'SoloPanelCtrl',
+    reloadOnSearch: false,
+    pageClass: 'page-dashboard',
+    exact: true,
+  },
+  {
+    path: '/dashboard-solo/:type/:slug',
+    templateUrl: 'public/app/features/panel/partials/soloPanel.html',
+    controller: 'SoloPanelCtrl',
+    reloadOnSearch: false,
+    pageClass: 'page-dashboard',
+    exact: true,
+  },
+  {
+    path: '/dashboard/new',
+    templateUrl: 'public/app/partials/dashboard.html',
+    controller: 'NewDashboardCtrl',
+    reloadOnSearch: false,
+    pageClass: 'page-dashboard',
+    exact: true,
+  },
+  {
+    // TODO: fix
+    path: '/dashboard/import',
+    templateUrl: 'public/app/features/dashboard/partials/dashboard_import.html',
+    controller: 'DashboardImportCtrl',
+    controllerAs: 'ctrl',
+    exact: true,
+  },
+  {
+    path: '/datasources',
+    templateUrl: 'public/app/features/plugins/partials/ds_list.html',
+    controller: 'DataSourcesCtrl',
+    controllerAs: 'ctrl',
+    exact: true,
+  },
+  {
+    path: '/dashboards',
+    templateUrl: 'public/app/features/manage-dashboards/partials/dashboard_list.html',
+    controller: 'DashboardListCtrl',
+    controllerAs: 'ctrl',
+    exact: true,
+  },
+  {
+    path: '/dashboards/folder/new',
+    templateUrl: 'public/app/features/dashboard/partials/create_folder.html',
+    controller: 'CreateFolderCtrl',
+    controllerAs: 'ctrl',
+    exact: true,
+  },
+  {
+    path: '/dashboards/f/:uid/:slug/permissions',
+    template: '<react-container />',
+    resolve: {
+      component: () => FolderPermissions,
+    },
+    exact: true,
+  },
+  {
+    path: '/dashboards/f/:uid/:slug/settings',
+    template: '<react-container />',
+    resolve: {
+      component: () => FolderSettingsPage,
+    },
+    exact: true,
+  },
+  {
+    path: '/dashboards/f/:uid/:slug',
+    templateUrl: 'public/app/features/dashboard/partials/folder_dashboards.html',
+    controller: 'FolderDashboardsCtrl',
+    controllerAs: 'ctrl',
+    exact: true,
+  },
+  {
+    path: '/dashboards/f/:uid',
+    templateUrl: 'public/app/features/dashboard/partials/folder_dashboards.html',
+    controller: 'FolderDashboardsCtrl',
+    controllerAs: 'ctrl',
+    exact: true,
+  },
+  {
+    path: '/profile',
+    templateUrl: 'public/app/features/org/partials/profile.html',
+    controller: 'ProfileCtrl',
+    controllerAs: 'ctrl',
+    exact: true,
+  },
+  {
+    path: '/admin/stats',
+    template: '<react-container />',
+    resolve: {
+      component: () => ServerStats,
+    },
+  },
+  {
+    path: '/login',
+    templateUrl: 'public/app/partials/login.html',
+    controller: 'LoginCtrl',
+    pageClass: 'login-page sidemenu-hidden',
+    exact: true,
+  },
+];
 
 /** @ngInject */
 export function setupAngularRoutes($routeProvider, $locationProvider) {
   $locationProvider.html5Mode(true);
 
   $routeProvider
-    .when('/', {
-      templateUrl: 'public/app/partials/dashboard.html',
-      controller: 'LoadDashboardCtrl',
-      reloadOnSearch: false,
-      pageClass: 'page-dashboard',
-    })
-    .when('/d/:uid/:slug', {
-      templateUrl: 'public/app/partials/dashboard.html',
-      controller: 'LoadDashboardCtrl',
-      reloadOnSearch: false,
-      pageClass: 'page-dashboard',
-    })
-    .when('/d/:uid', {
-      templateUrl: 'public/app/partials/dashboard.html',
-      controller: 'LoadDashboardCtrl',
-      reloadOnSearch: false,
-      pageClass: 'page-dashboard',
-    })
-    .when('/dashboard/:type/:slug', {
-      templateUrl: 'public/app/partials/dashboard.html',
-      controller: 'LoadDashboardCtrl',
-      reloadOnSearch: false,
-      pageClass: 'page-dashboard',
-    })
-    .when('/d-solo/:uid/:slug', {
-      templateUrl: 'public/app/features/panel/partials/soloPanel.html',
-      controller: 'SoloPanelCtrl',
-      reloadOnSearch: false,
-      pageClass: 'page-dashboard',
-    })
-    .when('/dashboard-solo/:type/:slug', {
-      templateUrl: 'public/app/features/panel/partials/soloPanel.html',
-      controller: 'SoloPanelCtrl',
-      reloadOnSearch: false,
-      pageClass: 'page-dashboard',
-    })
-    .when('/dashboard/new', {
-      templateUrl: 'public/app/partials/dashboard.html',
-      controller: 'NewDashboardCtrl',
-      reloadOnSearch: false,
-      pageClass: 'page-dashboard',
-    })
-    .when('/dashboard/import', {
-      templateUrl: 'public/app/features/dashboard/partials/dashboard_import.html',
-      controller: 'DashboardImportCtrl',
-      controllerAs: 'ctrl',
-    })
-    .when('/datasources', {
-      templateUrl: 'public/app/features/plugins/partials/ds_list.html',
-      controller: 'DataSourcesCtrl',
-      controllerAs: 'ctrl',
-    })
+    // .when('/', {
+    //   templateUrl: 'public/app/partials/dashboard.html',
+    //   controller: 'LoadDashboardCtrl',
+    //   reloadOnSearch: false,
+    //   pageClass: 'page-dashboard',
+    // })
+    // .when('/d/:uid/:slug', {
+    //   templateUrl: 'public/app/partials/dashboard.html',
+    //   controller: 'LoadDashboardCtrl',
+    //   reloadOnSearch: false,
+    //   pageClass: 'page-dashboard',
+    // })
+    // .when('/d/:uid', {
+    //   templateUrl: 'public/app/partials/dashboard.html',
+    //   controller: 'LoadDashboardCtrl',
+    //   reloadOnSearch: false,
+    //   pageClass: 'page-dashboard',
+    // })
+    // .when('/dashboard/:type/:slug', {
+    //   templateUrl: 'public/app/partials/dashboard.html',
+    //   controller: 'LoadDashboardCtrl',
+    //   reloadOnSearch: false,
+    //   pageClass: 'page-dashboard',
+    // })
+    // .when('/d-solo/:uid/:slug', {
+    //   templateUrl: 'public/app/features/panel/partials/soloPanel.html',
+    //   controller: 'SoloPanelCtrl',
+    //   reloadOnSearch: false,
+    //   pageClass: 'page-dashboard',
+    // })
+    // .when('/dashboard-solo/:type/:slug', {
+    //   templateUrl: 'public/app/features/panel/partials/soloPanel.html',
+    //   controller: 'SoloPanelCtrl',
+    //   reloadOnSearch: false,
+    //   pageClass: 'page-dashboard',
+    // })
+    // .when('/dashboard/new', {
+    //   templateUrl: 'public/app/partials/dashboard.html',
+    //   controller: 'NewDashboardCtrl',
+    //   reloadOnSearch: false,
+    //   pageClass: 'page-dashboard',
+    // })
+    // .when('/dashboard/import', {
+    //   templateUrl: 'public/app/features/dashboard/partials/dashboard_import.html',
+    //   controller: 'DashboardImportCtrl',
+    //   controllerAs: 'ctrl',
+    // })
+    // .when('/datasources', {
+    //   templateUrl: 'public/app/features/plugins/partials/ds_list.html',
+    //   controller: 'DataSourcesCtrl',
+    //   controllerAs: 'ctrl',
+    // })
     .when('/datasources/edit/:id', {
       templateUrl: 'public/app/features/plugins/partials/ds_edit.html',
       controller: 'DataSourceEditCtrl',
@@ -80,38 +222,38 @@ export function setupAngularRoutes($routeProvider, $locationProvider) {
       controller: 'DataSourceEditCtrl',
       controllerAs: 'ctrl',
     })
-    .when('/dashboards', {
-      templateUrl: 'public/app/features/manage-dashboards/partials/dashboard_list.html',
-      controller: 'DashboardListCtrl',
-      controllerAs: 'ctrl',
-    })
-    .when('/dashboards/folder/new', {
-      templateUrl: 'public/app/features/dashboard/partials/create_folder.html',
-      controller: 'CreateFolderCtrl',
-      controllerAs: 'ctrl',
-    })
-    .when('/dashboards/f/:uid/:slug/permissions', {
-      template: '<react-container />',
-      resolve: {
-        component: () => FolderPermissions,
-      },
-    })
-    .when('/dashboards/f/:uid/:slug/settings', {
-      template: '<react-container />',
-      resolve: {
-        component: () => FolderSettingsPage,
-      },
-    })
-    .when('/dashboards/f/:uid/:slug', {
-      templateUrl: 'public/app/features/dashboard/partials/folder_dashboards.html',
-      controller: 'FolderDashboardsCtrl',
-      controllerAs: 'ctrl',
-    })
-    .when('/dashboards/f/:uid', {
-      templateUrl: 'public/app/features/dashboard/partials/folder_dashboards.html',
-      controller: 'FolderDashboardsCtrl',
-      controllerAs: 'ctrl',
-    })
+    // .when('/dashboards', {
+    //   templateUrl: 'public/app/features/manage-dashboards/partials/dashboard_list.html',
+    //   controller: 'DashboardListCtrl',
+    //   controllerAs: 'ctrl',
+    // })
+    // .when('/dashboards/folder/new', {
+    //   templateUrl: 'public/app/features/dashboard/partials/create_folder.html',
+    //   controller: 'CreateFolderCtrl',
+    //   controllerAs: 'ctrl',
+    // })
+    // .when('/dashboards/f/:uid/:slug/permissions', {
+    //   template: '<react-container />',
+    //   resolve: {
+    //     component: () => FolderPermissions,
+    //   },
+    // })
+    // .when('/dashboards/f/:uid/:slug/settings', {
+    //   template: '<react-container />',
+    //   resolve: {
+    //     component: () => FolderSettingsPage,
+    //   },
+    // })
+    // .when('/dashboards/f/:uid/:slug', {
+    //   templateUrl: 'public/app/features/dashboard/partials/folder_dashboards.html',
+    //   controller: 'FolderDashboardsCtrl',
+    //   controllerAs: 'ctrl',
+    // })
+    // .when('/dashboards/f/:uid', {
+    //   templateUrl: 'public/app/features/dashboard/partials/folder_dashboards.html',
+    //   controller: 'FolderDashboardsCtrl',
+    //   controllerAs: 'ctrl',
+    // })
     .when('/explore', {
       template: '<react-container />',
       resolve: {

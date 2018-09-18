@@ -16,7 +16,7 @@ export class DashboardLoaderSrv {
     private $q,
     private $timeout,
     contextSrv,
-    private $routeParams,
+    private $route,
     private $rootScope
   ) {}
 
@@ -119,7 +119,18 @@ export class DashboardLoaderSrv {
       'services',
       result.data
     );
-    const scriptResult = scriptFunc(this.$routeParams, kbn, dateMath, _, moment, window, document, $, $, services);
+    const scriptResult = scriptFunc(
+      this.$route.constructor.params,
+      kbn,
+      dateMath,
+      _,
+      moment,
+      window,
+      document,
+      $,
+      $,
+      services
+    );
 
     // Handle async dashboard scripts
     if (_.isFunction(scriptResult)) {

@@ -1,2 +1,2 @@
 import angular from 'angular';
-export default angular.module('grafana.core', ['ngRoute']);
+export default angular.module('grafana.core', []);

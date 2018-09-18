@@ -7,9 +7,9 @@ export class FolderDashboardsCtrl {
   uid: string;
 
   /** @ngInject */
-  constructor(private backendSrv, navModelSrv, private $routeParams, $location) {
-    if (this.$routeParams.uid) {
-      this.uid = $routeParams.uid;
+  constructor(private backendSrv, navModelSrv, private $route, $location) {
+    if (this.$route.current.params.uid) {
+      this.uid = $route.current.params.uid;
 
       const loader = new FolderPageLoader(this.backendSrv);
 
