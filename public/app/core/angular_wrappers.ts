@@ -8,7 +8,11 @@ import { SideMenu } from './components/sidemenu/SideMenu';
 
 export function registerAngularDirectives() {
   react2AngularDirective('passwordStrength', PasswordStrength, ['password']);
-  react2AngularDirective('sidemenu', SideMenu, []);
+
+  // TODO: With React being the root component of the app there is no need for
+  // SideMenu to be available as an Angular directive. See AppWrapper.tsx file
+  // for details
+  // react2AngularDirective('sidemenu', SideMenu, []);
   react2AngularDirective('pageHeader', PageHeader, ['model', 'noTabs']);
   react2AngularDirective('emptyListCta', EmptyListCTA, ['model']);
   react2AngularDirective('searchResult', SearchResult, []);

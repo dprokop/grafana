@@ -6,6 +6,7 @@ import { each, extend } from 'lodash';
 import { grafanaHistory } from '../navigation/LocationService';
 import { legacyRoutes } from '../../routes/routes';
 import GrafanaRoute from '../navigation/GrafanaRoute';
+import { SideMenu } from '../components/sidemenu/SideMenu';
 
 interface AppWrapperProps {
   app: GrafanaApp;
@@ -70,7 +71,6 @@ export default class AppWrapper extends React.Component<AppWrapperProps, AppWrap
     // tslint:disable-next-line
     const appSeed =
       '<grafana-app class="grafana-app">' +
-      '<sidemenu class="sidemenu"></sidemenu>' +
       '<div class="page-alert-list">' +
       '<div ng-repeat="alert in dashAlerts.list" class="alert-{{alert.severity}} alert">' +
       '<div class="alert-icon">' +
@@ -96,6 +96,13 @@ export default class AppWrapper extends React.Component<AppWrapperProps, AppWrap
       <Router history={grafanaHistory()}>
         <>
           {this.state.ngInjector && this.container && this.renderRoutes()}
+
+          {/*
+             * TODO: SideMenu can be a part of the React app. There must be some css
+             * adjustment done in order to position it correctly and make the app
+             * content shrink when sidemenu is open
+             */}
+          <SideMenu />
           <div
             ref={this.setContainerRef}
             dangerouslySetInnerHTML={{

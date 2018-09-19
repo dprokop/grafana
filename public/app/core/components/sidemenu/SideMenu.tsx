@@ -15,18 +15,20 @@ export class SideMenu extends PureComponent {
   };
 
   render() {
-    return [
-      <div className="sidemenu__logo" onClick={this.toggleSideMenu} key="logo">
-        <img src="public/img/grafana_icon.svg" alt="graphana_logo" />
-      </div>,
-      <div className="sidemenu__logo_small_breakpoint" onClick={this.toggleSideMenuSmallBreakpoint} key="hamburger">
-        <i className="fa fa-bars" />
-        <span className="sidemenu__close">
-          <i className="fa fa-times" />&nbsp;Close
-        </span>
-      </div>,
-      <TopSection key="topsection" />,
-      <BottomSection key="bottomsection" />,
-    ];
+    return (
+      <div className="sidemenu">
+        <div className="sidemenu__logo" onClick={this.toggleSideMenu} key="logo">
+          <img src="public/img/grafana_icon.svg" alt="graphana_logo" />
+        </div>
+        <div className="sidemenu__logo_small_breakpoint" onClick={this.toggleSideMenuSmallBreakpoint} key="hamburger">
+          <i className="fa fa-bars" />
+          <span className="sidemenu__close">
+            <i className="fa fa-times" />&nbsp;Close
+          </span>
+        </div>
+        <TopSection key="topsection" />
+        <BottomSection key="bottomsection" />
+      </div>
+    );
   }
 }
