@@ -148,6 +148,13 @@ export const legacyRoutes: GrafanaLegacyRouteDescriptor[] = [
     pageClass: 'login-page sidemenu-hidden',
     exact: true,
   },
+  {
+    path: '/styleguide/:page?',
+    controller: 'StyleGuideCtrl',
+    controllerAs: 'ctrl',
+    templateUrl: 'public/app/features/admin/partials/styleguide.html',
+    exact: true,
+  },
 ];
 
 /** @ngInject */

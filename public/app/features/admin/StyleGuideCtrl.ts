@@ -8,16 +8,16 @@ export default class StyleGuideCtrl {
   navModel: any;
 
   /** @ngInject */
-  constructor(private $routeParams, private backendSrv, navModelSrv) {
+  constructor(private $route, private backendSrv, navModelSrv) {
     this.navModel = navModelSrv.getNav('cfg', 'admin', 'styleguide', 1);
     this.theme = config.bootData.user.lightTheme ? 'light' : 'dark';
   }
 
   switchTheme() {
-    this.$routeParams.theme = this.theme === 'dark' ? 'light' : 'dark';
+    this.$route.current.params.theme = this.theme === 'dark' ? 'light' : 'dark';
 
     const cmd = {
-      theme: this.$routeParams.theme,
+      theme: this.$route.current.params.theme,
     };
 
     this.backendSrv.put('/api/user/preferences', cmd).then(() => {
@@ -25,4 +25,3 @@ export default class StyleGuideCtrl {
     });
   }
 }
-

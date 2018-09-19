@@ -2,7 +2,7 @@ import angular from 'angular';
 import _ from 'lodash';
 import config from 'app/core/config';
 import { DashboardModel } from './dashboard_model';
-import locationService from '../../core/navigation/LocationService';
+import { getCurrentLocation } from '../../core/navigation/LocationService';
 import { queryString } from '../../core/navigation/utils/queryString';
 
 // represents the transient view state
@@ -106,8 +106,8 @@ export class DashboardViewState {
     // do not update url params if we are here
     // from routeUpdated event
     if (fromRouteUpdated !== true) {
-      const currentLocation = locationService().getHistory().location;
-      //
+      const currentLocation = getCurrentLocation();
+
       this.$location.getHistory().replace({
         ...currentLocation,
         search: queryString(this.serializeToUrl()),

@@ -2,8 +2,10 @@ import createBrowserHistory from 'history/createBrowserHistory';
 import { History } from 'history';
 import parseKeyValue, { isString, isNumber, isObject, forEach, isUndefined } from './utils/parseKeyValue';
 import { queryString } from './utils/queryString';
+
 let locationServiceInstance: LocationService;
 
+// TODO: write tests
 class LocationService {
   private history: History;
 
@@ -131,5 +133,20 @@ const locationService = () => {
   return locationServiceInstance;
 };
 
-//TODO refactor calls to locationService().X() to plain function calls -> X() that would use locationService underneath
 export default locationService;
+
+export const grafanaHistory = () => locationService().getHistory();
+
+export const navigateTo = (path: string, state?: any) => {
+  locationService()
+    .getHistory()
+    .push(path, state);
+};
+
+export const replaceLocation = (path: string, state?: any) => {
+  locationService()
+    .getHistory()
+    .replace(path, state);
+};
+
+export const getCurrentLocation = () => locationService().getHistory().location;

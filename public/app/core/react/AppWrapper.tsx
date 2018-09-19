@@ -1,11 +1,9 @@
 import * as React from 'react';
-import { BrowserRouter, Route, RouteComponentProps, Router } from 'react-router-dom';
+import { Router } from 'react-router-dom';
 import { GrafanaApp } from '../../app';
 import angular from 'angular';
 import { each, extend } from 'lodash';
-
-import { appEvents } from '../core';
-import locationService from '../navigation/LocationService';
+import { grafanaHistory } from '../navigation/LocationService';
 import { legacyRoutes } from '../../routes/routes';
 import GrafanaRoute from '../navigation/GrafanaRoute';
 
@@ -70,10 +68,32 @@ export default class AppWrapper extends React.Component<AppWrapperProps, AppWrap
 
   render() {
     // tslint:disable-next-line
-    const appSeed = `<grafana-app class="grafana-app"><sidemenu class="sidemenu"></sidemenu><div class="main-view"><div class="scroll-canvas" page-scrollbar><div id="ngRoot"></div></div></div></grafana-app>`;
+    const appSeed =
+      '<grafana-app class="grafana-app">' +
+      '<sidemenu class="sidemenu"></sidemenu>' +
+      '<div class="page-alert-list">' +
+      '<div ng-repeat="alert in dashAlerts.list" class="alert-{{alert.severity}} alert">' +
+      '<div class="alert-icon">' +
+      '<i class="{{alert.icon}}"></i>' +
+      '</div>' +
+      '<div class="alert-body">' +
+      '<div class="alert-title">{{alert.title}}</div>' +
+      '<div class="alert-text" ng-bind="alert.text"></div>' +
+      '</div>' +
+      '<button type="button" class="alert-close" ng-click="dashAlerts.clear(alert)">' +
+      '<i class="fa fa fa-remove"></i>' +
+      '</button>' +
+      '</div>' +
+      '</div>' +
+      '<div class="main-view">' +
+      '<div class="scroll-canvas" page-scrollbar>' +
+      '<div id="ngRoot"></div>' +
+      '</div>' +
+      '</div>' +
+      '</grafana-app>';
 
     return (
-      <Router history={locationService().getHistory()}>
+      <Router history={grafanaHistory()}>
         <>
           {this.state.ngInjector && this.container && this.renderRoutes()}
           <div
